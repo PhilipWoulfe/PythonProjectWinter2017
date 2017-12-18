@@ -3,7 +3,6 @@ from datetime import datetime
 
 class StockDay(object):
     def __init__(self, stock_date, open_value, high, low, close, adjusted_close, volume):
-        # print(stock_date)
         self._stock_date = datetime.strptime(stock_date, '%Y-%m-%d').date()
         self._open_value = float(open_value)
         self._high = float(high)
@@ -15,31 +14,31 @@ class StockDay(object):
     def __eq__(self, other):
         """Overrides the default implementation"""
         if isinstance(self, other.__class__):
-            return self.adjusted_close == other.adjusted_close
+            return self.stock_date == other.stock_date
         return NotImplemented
 
     def __lt__(self, other):
         """Overrides the default implementation"""
         if isinstance(self, other.__class__):
-            return self.adjusted_close < other.adjusted_close
+            return self.stock_date < other.stock_date
         return NotImplemented
 
     def __gt__(self, other):
         """Overrides the default implementation"""
         if isinstance(self, other.__class__):
-            return self.adjusted_close > other.adjusted_close
+            return self.stock_date > other.stock_date
         return NotImplemented
 
     def __le__(self, other):
         """Overrides the default implementation"""
         if isinstance(self, other.__class__):
-            return self.adjusted_close <= other.adjusted_close
+            return self.stock_date <= other.stock_date
         return NotImplemented
 
     def __ge__(self, other):
         """Overrides the default implementation"""
         if isinstance(self, other.__class__):
-            return self.adjusted_close >= other.adjusted_close
+            return self.stock_date >= other.stock_date
         return NotImplemented
 
     @property
