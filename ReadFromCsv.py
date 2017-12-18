@@ -8,6 +8,10 @@ class ReadFromCsv(object):
 
     @staticmethod
     def csv_to_stockday_list():
+        """
+        Generate a list of StockDay objects from a user selected csv file
+        :return: list of StockDay objects
+        """
         root = tk.Tk()
         root.withdraw()
 
@@ -19,10 +23,10 @@ class ReadFromCsv(object):
         with open(csv_path, newline='') as csv_file:
             first_line = True
 
-            csv_reader = csv.reader(csv_file, delimiter=',', quotechar='|')
+            csv_reader = csv.reader(csv_file, delimiter=',')  # read csv and separate on ","
 
             for row in csv_reader:
-                if first_line:  # skip first line
+                if first_line:  # skip first line since it's the titles
                     first_line = False
                     continue
 
@@ -32,6 +36,7 @@ class ReadFromCsv(object):
 
                 stock = None
 
+                # Create fields for new StockDay object
                 stock_date = row[0]
                 stock_open = row[1]
                 stock_high = row[2]
@@ -40,6 +45,7 @@ class ReadFromCsv(object):
                 stock_adj_close = row[5]
                 stock_volume = row[6]
 
+                # try to create new StockDay object
                 try:
                     stock = StockDay(
                         stock_date
@@ -54,6 +60,7 @@ class ReadFromCsv(object):
                 except ValueError as verr:
                     print(verr)
 
+                # Ensure object was created
                 if stock is not None:
                     stockday_list.append(stock)
 

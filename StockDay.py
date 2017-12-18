@@ -3,6 +3,16 @@ from datetime import datetime
 
 class StockDay(object):
     def __init__(self, stock_date, open_value, high, low, close, adjusted_close, volume):
+        """
+        Create a StockDay object
+        :param stock_date: date for Stock values
+        :param open_value: opening value of the stock on date
+        :param high: highest value of the stock on date
+        :param low: lowest value of stock on date
+        :param close: closing value of stock on date
+        :param adjusted_close: adjusted closing value of stock on date
+        :param volume: volume of stock traded on date
+        """
         self._stock_date = datetime.strptime(stock_date, '%Y-%m-%d').date()
         self._open_value = float(open_value)
         self._high = float(high)
