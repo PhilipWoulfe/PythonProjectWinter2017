@@ -29,7 +29,7 @@ def get_stock(stock, t: T):
             i = stock_list.index(tmp)
             stock_list[i].add_stock_day(s)
         else:
-            stock_list.append(t(s))
+            stock_list.append(tmp)
 
     # Sort stock list based on the average in descending order
     stock_list.sort(key=lambda x: x.average(), reverse=True)
