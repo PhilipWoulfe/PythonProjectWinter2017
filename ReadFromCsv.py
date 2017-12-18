@@ -11,7 +11,7 @@ class ReadFromCsv(object):
         root = tk.Tk()
         root.withdraw()
 
-        # You can find the file yourself to save me the hassle :P
+        # You can find the file yourself to save me the hassle... :P
         csv_path = filedialog.askopenfilename()
 
         stockday_list = list()
