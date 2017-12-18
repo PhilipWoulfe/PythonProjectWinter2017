@@ -7,16 +7,18 @@ T = TypeVar("T")
 
 
 def main():
+    number_of_stock_to_print = 6
+
     stock = ReadFromCsv.ReadFromCsv.csv_to_stockday_list()  # Read data from csv
 
     stock_month = get_stock(stock, StockMonth)  # create stock month list
     stock_year = get_stock(stock, StockYear)  # create stock year list
 
-    print_three(stock_month, StockMonth, True)  # print top 3 stock months
-    print_three(stock_month, StockMonth, False)  # print bottom 3 stock months
+    print_n_stock(stock_month, StockMonth, True, number_of_stock_to_print)  # print top 6 stock months
+    print_n_stock(stock_month, StockMonth, False, number_of_stock_to_print)  # print bottom 6 stock months
 
-    print_three(stock_year, StockYear, True)  # print top 3 stock years
-    print_three(stock_year, StockYear, False)  # print bottom 3 stock years
+    print_n_stock(stock_year, StockYear, True, number_of_stock_to_print)  # print top 6 stock years
+    print_n_stock(stock_year, StockYear, False, number_of_stock_to_print)  # print bottom 6 stock years
 
 
 def get_stock(stock, t: T):
@@ -39,12 +41,13 @@ def get_stock(stock, t: T):
     return stock_list
 
 
-def print_three(stock, t: T, is_top):
+def print_n_stock(stock, t: T, is_top, n):
     """
     Print three AbstractStockPeriod objects determined by T and is_top
     :param stock: list of AbstractStockPeriod objects
     :param t: Generic type - determines how AbstractStockPeriod will be printed
     :param is_top: Boolean - Print top 3 if True or Bottom 3 otherwise
+    :param n: number of AbstractStockPeriod objects to print
     """
     rank = 'Top' if is_top else 'Bottom'  # set title based on is_top parameter
 
@@ -53,19 +56,20 @@ def print_three(stock, t: T, is_top):
 
     # display determined by type of generic T
     if t == StockMonth:
-        print_months(stock[0:3], rank)  # print first 3 items in list
+        print_months(stock[0:n], rank, n)  # print first 6 items in list
     elif t == StockYear:
-        print_years(stock[0:3], rank)  # print first 3 items in list
+        print_years(stock[0:n], rank, n)  # print first 6 items in list
 
 
-def print_months(stock, rank):
+def print_months(stock, rank, n):
     """
     Print values for list of StockMonth objects
     :param stock: list of StockMonth objects
     :param rank: String - usually set to top or bottom
+    :param n: number of months to print
     """
     print(' ___________________________ ')
-    print('|    %6s 3 Months        |' % rank)
+    print('|    %6s %d Months        |' % (rank, n))
     print('|___________________________|')
     print('|%6s |%6s |%10s |' % ('Year', 'Month', 'Average'))
     print('|_______|_______|___________|')
@@ -74,14 +78,15 @@ def print_months(stock, rank):
     print('|_______|_______|___________|')
 
 
-def print_years(stock, rank):
+def print_years(stock, rank, n):
     """
     Print values for list of StockYear objects
     :param stock: list of StockYear objects
     :param rank: String - usually set to top or bottom
+    :param n: number of years to print
     """
     print(' ___________________________ ')
-    print('|    %6s 3 Years         |' % rank)
+    print('|    %6s %d Years         |' % (rank, n))
     print('|___________________________|')
     print('|%9s | %14s |' % ('Year', 'Average'))
     print('|__________|________________|')
