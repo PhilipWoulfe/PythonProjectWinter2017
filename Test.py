@@ -3,7 +3,7 @@ from StockMonth import StockMonth
 from StockYear import StockYear
 from typing import TypeVar
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 def main():
@@ -15,13 +15,13 @@ def main():
     for e in stock_month:
         print(e.year, e.month, e.average())
 
-    print ('_____________')
+    print('_____________')
 
     for e in stock_year:
         print(e.year, e.average())
 
 
-def get_stock(stock, t: TypeVar('T')):
+def get_stock(stock, t: TypeVar("T")):
     stock_list = list()
     for s in stock:
         tmp = t(s)
@@ -32,7 +32,7 @@ def get_stock(stock, t: TypeVar('T')):
             stock_list.append(t(s))
 
     # Sort stock list based on the average in descending order
-        stock_list.sort(key=lambda x: x.average(), reverse=True)
+    stock_list.sort(key=lambda x: x.average(), reverse=True)
     return stock_list
 
 
