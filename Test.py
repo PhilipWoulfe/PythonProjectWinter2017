@@ -21,7 +21,7 @@ def main():
         print(e.year, e.average())
 
 
-def get_stock(stock, t: TypeVar("T")):
+def get_stock(stock, t: T):
     stock_list = list()
     for s in stock:
         tmp = t(s)

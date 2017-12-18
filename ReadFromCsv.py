@@ -11,6 +11,7 @@ class ReadFromCsv(object):
         root = tk.Tk()
         root.withdraw()
 
+        # You can fid the file yourself to save me the hassle :P
         csv_path = filedialog.askopenfilename()
 
         stockday_list = list()
@@ -25,6 +26,10 @@ class ReadFromCsv(object):
                     first_line = False
                     continue
 
+                # check for missing or extra entries in the csv
+                if len(row) != 7:
+                    continue
+
                 stock = None
 
                 stock_date = row[0]
@@ -34,10 +39,6 @@ class ReadFromCsv(object):
                 stock_close = row[4]
                 stock_adj_close = row[5]
                 stock_volume = row[6]
-
-                # check for missing or extra entries in the csv
-                if len(row) != 7:
-                    continue
 
                 try:
                     stock = StockDay(
