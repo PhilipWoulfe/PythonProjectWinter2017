@@ -34,21 +34,6 @@ def get_stock(stock, t: TypeVar('T')):
     # Sort stock month list based on the monthly average in descending order
         stock_list.sort(key=lambda x: x.average(), reverse=True)
     return stock_list
-#
-#
-# def get_stock_year(stock):
-#     stock_year = list()
-#     for s in stock:
-#         tmp = StockYear(s)
-#         if tmp in stock_year:
-#             i = stock_year.index(tmp)
-#             stock_year[i].add_stock_day(s)
-#         else:
-#             stock_year.append(StockYear(s))
-#
-#     # Sort stock year list based on the yearly average in descending order
-#     stock_year.sort(key=lambda x: x.average(), reverse=True)
-#     return stock_year
 
 
 if __name__ == '__main__':
