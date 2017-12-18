@@ -31,7 +31,7 @@ def get_stock(stock, t: TypeVar('T')):
         else:
             stock_list.append(t(s))
 
-    # Sort stock month list based on the monthly average in descending order
+    # Sort stock list based on the average in descending order
         stock_list.sort(key=lambda x: x.average(), reverse=True)
     return stock_list
 
